@@ -1,0 +1,49 @@
+import java.util.Scanner;
+public class MaxWater {
+
+	public static int maxArea(int height[]) {
+		if (height.length < 1) {
+			return 0;
+		}
+
+		int left = 0;
+		int right = height.length-1;
+		int base = right - left; 
+		int Area = 0; 
+		int val = 0; 
+		
+		while(left < right) {
+			val = Math.min(height[left],height[right]);
+			int Temp_Area =  0;
+			Temp_Area = base * val;
+			if(Temp_Area > Area) {
+				Area = Temp_Area; 
+			}
+			if(val == height[left]) {
+				left++;
+				base--; 
+			}
+			else {
+				right--;
+				base--; 
+			}
+		}
+		
+		
+		return Area;  
+	}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt(); 
+		int [] arr = new int [n];
+		
+		for(int i = 0; i<n ; i++) 
+			arr[i] = sc.nextInt(); 
+	
+		
+	System.out.println(maxArea(arr));
+	}
+		
+
+}
